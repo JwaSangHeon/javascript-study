@@ -1,0 +1,90 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+header {
+  background-color: #000;
+}
+header .title {
+  /* background-color: skyblue; */
+  color: #fff;
+  width: 1000px;
+  height: 120px;
+  font-size: 40px;
+  font-weight: bold;
+  padding-left: 40px;
+  line-height: 120px;
+}
+.allContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.allContent .menu {
+  display: flex;
+  padding: 40px;
+  background-color: navajowhite;
+  width: 1000px;
+  justify-content: space-between;
+}
+.allContent .menu div {
+  background-color: #fff;
+  border: 1px #d1d1d1 solid;
+  font-size: 16px;
+  flex-grow: 1;
+  margin-right: 14px;
+  text-align: center;
+  line-height: 33px;
+  height: 33px;
+}
+.allContent .menu div:hover {
+  border-color: #454545;
+  font-weight: bold;
+}
+.main {
+  background-color: #ffdead;
+  width: 1000px;
+  padding: 40px;
+}
+.main > .title {
+  font-size: 20px;
+  color: #000;
+  font-weight: bold;
+  border-bottom: 1px solid #454545;
+  padding-bottom: 20px;
+}
+.box {
+  padding-top: 30px;
+}
+
+.box .title {
+  background-color: #f7f7f7;
+  border: 1px #d1d1d1 solid;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+  padding-left: 15px;
+  height: 46px;
+  line-height: 46px;
+}
+.box .content {
+  background-color: #fff;
+  color: #000;
+  font-size: 12px;
+  padding: 30px;
+}
+
+footer {
+  border-top: 1px solid;
+  text-align: center;
+  font-size: 12px;
+  padding-top: 10px;
+  line-height: 2em;
+}
+footer div:nth-child(1) {
+  color: #999;
+}
+footer div:nth-child(2) {
+  color: #000;
+}

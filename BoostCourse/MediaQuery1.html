@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Queries</title>
+    <style>
+        /* 최소한의 미디어쿼리를 이용해야 더 좋다. 따라서 바디의 색상을 지정해놓고
+        그것을 제외한 2개의 미디어쿼리를 지정하는것이 더 좋다. */
+        @media screen and (max-width : 767px) {
+            body{background-color: gold;}
+        }
+        @media screen and (min-width: 768px)and (max-width : 1024px) {
+            body{background-color: lightblue;}
+        }
+        @media screen and (min-width : 1025px) {
+            body{background-color: lightpink;}
+        }
+        /* 페이지 인쇄하는 경우의 스타일 추가
+        - 앵커 요소의 url출력
+        - 앵커 요소의 밑줄 제거 */
+        @media print{
+            a{
+                text-decoration: none;
+            }
+            a:after{
+                display: inline;
+                content: "("attr(href)")";
+            }
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <a href="http://www.naver.com">naver</a> ipsum dolor sit amet consectetur adipisicing elit. Id illum accusantium culpa ab deleniti ullam? Natus tempora voluptatem dolorum, quod at ipsam harum modi dignissimos veniam. Beatae harum cumque expedita!
+    </p>
+    <p>
+        Lorem ipsum dolor <a href="http://www.google.com">google</a> sit amet consectetur adipisicing elit. Quae esse, laboriosam ratione ab excepturi earum enim voluptatibus quaerat maiores possimus praesentium voluptatem necessitatibus? Alias quaerat eius dolorem, eligendi distinctio accusantium?
+    </p>
+</body>
+</html>

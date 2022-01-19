@@ -1,0 +1,180 @@
+:root {
+  --naver--color: #2db400;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  font-family: "Noto Sans KR", sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+/*헤더 css*/
+header {
+  padding: 5px 70px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px;
+  border-bottom: 1px solid lightgray;
+}
+header .logoAndSearch {
+  display: flex;
+}
+header .logo a {
+  text-decoration: none;
+  font-size: 40px;
+  color: var(--naver--color);
+  font-weight: 900;
+  margin-right: 20px;
+}
+header .search {
+  border: 2px solid var(--naver--color);
+  margin-top: 6px;
+  height: 40px;
+}
+header .search input[type="text"] {
+  border: 0px;
+  outline: none;
+  width: 400px;
+}
+header .search button {
+  border: 0;
+  background-color: var(--naver--color);
+  height: 100%;
+  width: 40px;
+}
+header .links {
+  font-size: 8px;
+  align-self: start;
+}
+header .links a {
+  color: lightgray;
+  text-decoration: none;
+  margin-left: 10px;
+}
+header .links a:hover {
+  text-decoration: underline;
+}
+
+/*nav css*/
+nav {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+.menu {
+  padding: 10px 70px;
+  display: flex;
+}
+
+li {
+  font-size: 12px;
+  padding-right: 10px;
+  list-style: none;
+}
+
+.listgreen {
+  color: var(--naver--color);
+  font-weight: bold;
+}
+.listblack {
+  color: #000;
+  font-weight: bold;
+}
+.listadd {
+  font-size: 8px;
+  color: gray;
+}
+.listadd:hover {
+  text-decoration: underline;
+}
+
+li a {
+  text-decoration: none;
+}
+.weather {
+  width: 100px;
+  text-align: center;
+}
+
+/*main css*/
+main {
+  font-size: 40px;
+  padding: 0px 70px;
+  height: 1000px;
+  display: flex;
+}
+
+.main1 {
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+main div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main1 div:nth-child(1) {
+  margin-top: 20px;
+  height: 200px;
+  width: 500px;
+  background-color: red;
+}
+.main1 div:nth-child(2) {
+  margin-top: 20px;
+  height: 50px;
+  width: 500px;
+  background-color: orange;
+}
+.main1 div:nth-child(3) {
+  height: 500px;
+  width: 500px;
+  background-color: green;
+}
+.main1 div:nth-child(4) {
+  margin-top: 20px;
+  height: 250px;
+  width: 500px;
+  background-color: blue;
+}
+
+.main2 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.main2 div:nth-child(1) {
+  margin-top: 20px;
+  height: 300px;
+  width: 350px;
+  background-color: violet;
+}
+.main2 div:nth-child(2) {
+  margin-top: 20px;
+  height: 400px;
+  width: 350px;
+  background-color: lightgreen;
+}
+.main2 div:nth-child(3) {
+  margin-top: 20px;
+  height: 300px;
+  width: 350px;
+  background-color: lightsalmon;
+}
+
+/* footer css */
+footer {
+  margin-top: 20px;
+  padding-top: 20px;
+  font-size: 15px;
+  text-align: center;
+  height: 200px;
+  border-top: 1px solid lightgray;
+}
