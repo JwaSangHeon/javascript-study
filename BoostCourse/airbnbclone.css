@@ -1,0 +1,295 @@
+* {
+  margin: 0;
+  /* color: white;
+  background-color: black; */
+  /* border: 1px solid yellowgreen; */
+}
+.containertop {
+  height: 850px;
+  color: white;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 100px;
+}
+.corona a {
+  color: white;
+  text-align: center;
+  font-weight: 600;
+}
+.header {
+  /* background-color: black; */
+  height: 10vh;
+  width: 100%;
+  /* padding: 20px 0px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-size: 28px;
+  font-weight: 900;
+}
+.logo a {
+  color: white;
+  text-decoration: none;
+}
+.menu {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 900;
+  width: 30%;
+  padding-left: 200px;
+}
+.menu a {
+  color: white;
+  text-decoration: none;
+}
+.menu a:hover {
+  color: rgb(120, 120, 120);
+}
+.lodging {
+}
+.experience {
+}
+.onlineexperience {
+}
+.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 900;
+  width: 20%;
+  height: 100%;
+}
+.host {
+  padding: 10px;
+}
+.host:hover {
+  border-radius: 32px;
+  background-color: rgb(40, 40, 40);
+}
+.area {
+  padding: 10px;
+}
+.area:hover {
+  border-radius: 32px;
+  background-color: rgb(40, 40, 40);
+}
+.my {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  width: 60px;
+  height: 30px;
+  border-radius: 32px;
+}
+.mymenu {
+  /* background-color: white; */
+}
+.mypic {
+}
+
+.my i {
+  font-size: 17px;
+  width: 100%;
+  height: 20px;
+  background-color: white;
+  color: black;
+}
+
+.nav {
+  background-color: white;
+  border-radius: 32px;
+  height: 60px;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav div {
+  padding: 10px 30px;
+  font-size: 14px;
+  background-color: white;
+  color: black;
+}
+.nav span {
+  background-color: white;
+  color: black;
+  font-weight: 700;
+}
+.location {
+  border-radius: 32px;
+}
+.checkin {
+  border-left: lightgray solid 1px;
+}
+.checkout {
+  border-left: lightgray solid 1px;
+}
+.personnel {
+  border-left: lightgray solid 1px;
+}
+.searchIcon {
+  border-radius: 32px;
+}
+.searchIcon span {
+  display: block;
+  padding: 10px;
+  height: 20px;
+  width: 20px;
+  border-radius: 32px;
+  background-color: lightpink;
+}
+
+.searchIcon span i {
+  font-size: 20px;
+  height: 100%;
+  width: 100%;
+  background-color: lightpink;
+}
+
+.mainimg {
+  position: relative;
+  padding-top: 30px;
+  width: 100%;
+}
+.mainimg img {
+  height: 600px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 10px;
+}
+.intro {
+  text-align: center;
+  background-color: transparent;
+  position: absolute;
+  top: 400px;
+  left: 330px;
+  font-size: 40px;
+  font-weight: 700;
+}
+.flexablesearch {
+  position: absolute;
+  background-color: white;
+  color: plum;
+  top: 520px;
+  left: 430px;
+  padding: 15px 30px;
+  border-radius: 32px;
+  font-size: 20px;
+  outline: none;
+  border: 0;
+}
+
+.containerbottom {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  padding: 40px 100px;
+  margin-top: 60px;
+}
+.idea {
+  font-size: 36px;
+  font-weight: 600;
+  padding-bottom: 50px;
+}
+.citylist {
+  display: flex;
+  justify-content: space-between;
+}
+.city {
+  height: 350px;
+  width: 230px;
+  /* border: 1px solid skyblue; */
+  border-radius: 20px;
+}
+.seoul {
+  height: 50%;
+  margin-bottom: 0;
+}
+.seoul img {
+  border-radius: 20px 20px 0px 0px;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
+.seoulText {
+  margin: 0;
+  height: 40%;
+  color: white;
+  background-color: tomato;
+  border-radius: 0px 0px 20px 20px;
+  padding-top: 20px;
+  padding-left: 15px;
+  font-size: 24px;
+}
+.incheon {
+  height: 50%;
+  margin-bottom: 0;
+}
+.incheon img {
+  border-radius: 20px 20px 0px 0px;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
+.incheonText {
+  margin: 0;
+  height: 40%;
+  color: white;
+  background-color: rgba(153, 33, 53, 0.747);
+  border-radius: 0px 0px 20px 20px;
+  padding-top: 20px;
+  padding-left: 15px;
+  font-size: 24px;
+}
+.daegu {
+  height: 50%;
+  margin-bottom: 0;
+}
+.daegu img {
+  border-radius: 20px 20px 0px 0px;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
+.daeguText {
+  margin: 0;
+  height: 40%;
+  color: white;
+  background-color: rgba(204, 21, 180, 0.747);
+  border-radius: 0px 0px 20px 20px;
+  padding-top: 20px;
+  padding-left: 15px;
+  font-size: 24px;
+}
+.daejeon {
+  height: 50%;
+  margin-bottom: 0;
+}
+.daejeon img {
+  border-radius: 20px 20px 0px 0px;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
+.daejeonText {
+  margin: 0;
+  height: 40%;
+  color: white;
+  background-color: rgba(219, 154, 14, 0.747);
+  border-radius: 0px 0px 20px 20px;
+  padding-top: 20px;
+  padding-left: 15px;
+  font-size: 24px;
+}
+.city span {
+  font-size: 16 px;
+}
