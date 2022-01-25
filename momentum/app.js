@@ -39,3 +39,64 @@ function sayHello(){
 
 sayHello();
 sayHello();
+
+//입력 받기
+function sayHello2(nameOfPerson, age){
+    console.log('Hello my name is '+ nameOfPerson + ' my age is '+ age);
+}
+sayHello2('nico',10);
+sayHello2('sangheon',25);
+
+function plus(firstNumber,secondNumber){
+    console.log(firstNumber+secondNumber);
+}
+plus(1,2);
+
+//object에 함수 추가
+player.sayHello3 = function(){
+    console.log('Hello!');
+}
+player.sayHello3();
+
+//challenge
+const calculator = {
+    add:function(firstNumber,secondNumber){
+        console.log(firstNumber+secondNumber);
+    },
+    minus:function(firstNumber,secondNumber){
+        console.log(firstNumber-secondNumber);
+    },
+    divide:function(firstNumber,secondNumber){
+        console.log(firstNumber/secondNumber);
+    },
+    power:function(firstNumber,secondNumber){
+        console.log(firstNumber**secondNumber);
+    },
+};
+calculator.add(10,10);
+calculator.minus(10,10);
+calculator.divide(10,10);
+calculator.power(10,10);
+
+//return
+const myAge = 25;
+function calculateKrAge(ageOfForeigner){
+    return ageOfForeigner+2;
+}
+const krAge = calculateKrAge(myAge);
+console.log(krAge);
+
+//if(조건문)
+//if(condition){...condition===true}
+const myRealAge = parseInt(prompt('How old are you?'));//prompt 사용하지 않는다.(css적용불가, js일시정지)
+console.log();
+if(isNaN(myRealAge) || myRealAge<0){
+    console.log('Please write a real positive number');
+}else if(myRealAge<18){
+    console.log('You are too young!');
+}else if(myRealAge>=18 && myRealAge<=50){//and는 &&로 사용, or은 ||로 사용
+    console.log('You can drink!');
+}else{
+    console.log(`Why don't you quit to drink?`);
+}
+//else는 선택사항, 꼭 있어야 하지는 않는다.
