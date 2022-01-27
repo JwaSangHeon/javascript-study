@@ -166,8 +166,8 @@
   text-align: center;
   background-color: transparent;
   position: absolute;
-  top: 400px;
-  left: 330px;
+  top: 60%;
+  left: 38%;
   font-size: 40px;
   font-weight: 700;
 }
@@ -175,8 +175,8 @@
   position: absolute;
   background-color: white;
   color: plum;
-  top: 520px;
-  left: 430px;
+  top: 80%;
+  left: 45%;
   padding: 15px 30px;
   border-radius: 32px;
   font-size: 20px;
@@ -198,7 +198,7 @@
 }
 .citylist {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .city {
   height: 350px;
