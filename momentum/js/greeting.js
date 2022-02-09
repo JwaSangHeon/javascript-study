@@ -1,4 +1,4 @@
-const loginForm = document.querySelector('.login-form');
+const loginForm = document.querySelector('#login-form');
 const loginInput = loginForm.querySelector('input');
 const greeting = document.querySelector('#greeting');
 
@@ -51,7 +51,6 @@ function loginFormSubmit(event){
 // link.addEventListener('click',handleAClicked);
 
 const savedUserName = localStorage.getItem(USERNAME_KEY);
-console.log(savedUserName);
 
 if(savedUserName === null){
     loginForm.classList.remove(HIDDEN_CLASSNAME);
