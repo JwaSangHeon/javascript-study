@@ -4,8 +4,8 @@ function getClock(){
     const date = new Date();
     const hours = fillTwoNumber(date.getHours());
     const minutes = fillTwoNumber(date.getMinutes());
-    const seconds = fillTwoNumber(date.getSeconds());
-    clock.innerText = `${hours}:${minutes}:${seconds}`;
+    // const seconds = fillTwoNumber(date.getSeconds());
+    clock.innerText = `${hours}:${minutes}`;
 }
 
 function fillTwoNumber(number){

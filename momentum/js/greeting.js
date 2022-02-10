@@ -61,6 +61,6 @@ if(savedUserName === null){
 
 // 반복을 줄이기 위해 코드가 중복되는 것을 함수화 한다.
 function paintGreeting(username){
-    greeting.innerText = `hello! ${username}`;
+    greeting.innerText = `Hello! ${username}`;
     greeting.classList.remove(HIDDEN_CLASSNAME);
 }
