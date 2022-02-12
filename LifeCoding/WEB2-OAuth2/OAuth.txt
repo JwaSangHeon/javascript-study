@@ -1,0 +1,32 @@
+* OAuth의 목적 : accessToken을 얻어 다른 서비스에 대해 접근한다.
+
+-용어
+우리가 만든 서비스 : mine(Client)
+우리의 유저 : User(Resource owner)
+유저가 가입되어있는 서비스 : Their(Resource server) - 데이터를 가지고 있는 서버
+                    : Authorization server - 인증과 관련된 처리를 하는 전담하는 서버
+Client ID : 아이디와 같은 개념(식별자)
+Client Secret : 비밀번호와 같은개념(노출 X)
+Authorized redirect URl : Authorized code를 전달하는 주소(다른 주소가 요청할 시, 무시)
+
+refreshToken : accessToken은 수명이 있다. accessToken의 수명이 다 되었을 때, 다시 발급 받을 때 refreshToken을 사용한다.
+
+-절차
+등록 : 클라이언트가 리소스 서버에 승인을 사전에 받는 것.
+등록이 끝나면 Resource server 와 Client는 각각 Client ID, Client Secret, Authorized redirect URl을 알게 된다.
+Client가 Resource server의 A,B,C,D 4개의 기능 중 B,C 두 개만 사용한다면 링크를 사용할 때,
+https://resource.server/?client_id=1&scope=B,C&redirect_uri=https://client/callback 과 같이 사용한다.
+
+user가 Resource server에 사용 요청(위에 주소로 접속) -> Resource server는 user가 로그인 되어 있는지 확인(안되있을 때, 로그인 요청)
+-> Resource server는 client_id 와 redirect_uri 확인 후 같다면 scope에 해당하는 권한을 client한테 부여할 것 인지를 확인한다.
+-> Resource server는 user_id와 그에 따른 scope를 저장한다.
+
+Client가 Resource owner를 통해 Authorized code를 받고 client는 Resource server에 직접 Authorized code과 client ID,
+client Secret를 이용해 접속요청을 한다.
+인증 후에는 Authorized code는 필요없다.
+이후 accessToken을 발급하여 client와 공유하고 Resource server는 accessToken을 보고 어떤 유저(user_id)이고, 어떤 서비스(scope)
+가 필요한지 확인해서 제공한다.
+
+Resource server가 client들에게 우리를 사용하려면 이렇게 해야한다라고 한다. 이것을 'API'(Application Programming Interface)라고
+한다.k
+
