@@ -5,14 +5,73 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Word-Relay</title>
+	<style>
+		.container{
+			height: 30vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+			align-items: center;
+		}
+	</style>
 </head>
 <body>
-	<div><span id="order">1</span>번째 참가자</div>
-	<div>제시어 : <span id="word"></span></div>
-	<input type="text">
-	<button>입력</button>
+	<div class="container">
+		<div><span id="order">1</span>번째 참가자</div>
+		<div>제시어 : <span id="word"></span></div>
+		<input type="text">
+		<button>입력</button>
+	</div>
 	<script>
+		const players = parseInt(prompt(`몇 명이 참여하나요?`), 10);// 10진법을 사용한다.(안 적어도 된다.)
+		const $input = document.querySelector('input');
+		const $button = document.querySelector('button');
+		const $word = document.querySelector('#word');
 		
+		let word; //제시어
+		let newWord; //새로입력한 단어
+		
+		const $order = document.querySelector('#order');
+		//alert(players);
+		//const yesOrNo = confirm(`맞나요?`);
+		function savedWord(){ //제시어에 새로 입력한 단어를 넣고 text안을 비워준다. 그 후 빈 text에 커서가 있게 한다.
+			word = newWord;
+			$input.value = '';
+			$input.focus();
+		}
+		const onClickButton = function(){
+			if (!word) { // 제시어가 비어있는가?(첫 번째 시작)
+				//비어 있다.
+				savedWord();
+				$word.innerText = word; // 화면 표시
+				if(players > 1){ // 혼자일 경우 오르지 않음
+					$order.innerText++;
+				}
+			} else {
+				//비어 있지 않다.
+				const newWordArray = newWord.split('');
+				const wordArray = word.split('');
+				savedWord();
+				if(newWordArray[0] === wordArray[wordArray.length-1]){
+					console.log(`success!`);
+					$word.innerText = word;
+					if (players > $order.innerText) {
+						$order.innerText++;
+					} else {
+						$order.innerText = 1;
+					}
+					
+				}else {
+					console.log(`fail!`);
+					alert(`탈락자는 ${$order.innerText}번 선수`);
+				}
+			}
+		};
+		const onInput = function(event){
+			newWord = event.target.value;
+		};
+		$input.addEventListener('input', onInput);
+		$button.addEventListener('click', onClickButton);
 	</script>
 </body>
 </html>
