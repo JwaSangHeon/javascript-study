@@ -132,4 +132,28 @@ alert('경고'); // alert() : 경고창을 띄운다.
 confirm(`맞나요?`); // confirm() : 확인, 취소 두 개중에 한 개를 받을 수 있다.
 
 // 태그.addEventListener('이벤트이름',리스너함수(콜백함수));
-ㅏ
+
+
+// 고차 함수(high order function) : 함수가 함수를 리턴한다.(화살표 2개)
+// const onClickNumber = (number) =>{
+//     return () => { 
+//         if(operator){
+
+//         }else{
+
+//         }
+//     };
+// };
+
+//           ||
+//           ||
+//           || 
+
+const onClickNumber = (number) => () =>{
+    if(operator){
+        
+    }else{
+
+    }
+};
+

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>calculator</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      .container {
+        display: flex;
+        height: 50vh;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+      }
+      #title {
+        padding: 10px;
+        font-size: 28px;
+      }
+      #calculator {
+        display: flex;
+        flex-direction: column;
+        height: 20vh;
+        justify-content: space-around;
+        align-items: center;
+      }
+      #buttons {
+        display: flex;
+        flex-direction: column;
+        width: 147px;
+        justify-content: space-between;
+        align-items: center;
+      }
+      button {
+        margin: 1px;
+      }
+      .row {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+      .row button {
+        flex-grow: 1;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="title">계산기</div>
+      <div id="calculator">
+        <form id="pressEnter" action="">
+          <input type="text" />
+          <button class="hidden"></button>
+        </form>
+        <div id="buttons">
+          <div class="row">
+            <button id="one">1</button>
+            <button id="two">2</button>
+            <button id="three">3</button>
+            <button id="plus">+</button>
+          </div>
+          <div class="row">
+            <button id="four">4</button>
+            <button id="five">5</button>
+            <button id="six">6</button>
+            <button id="minus">-</button>
+          </div>
+
+          <div class="row">
+            <button id="seven">7</button>
+            <button id="eight">8</button>
+            <button id="nine">9</button>
+            <button id="multiply">x</button>
+          </div>
+          <div class="row">
+            <button id="zero">0</button>
+            <button id="clear">clear</button>
+            <button id="equal">=</button>
+            <button id="divide">%</button>
+          </div>
+        </div>
+        <div>결과 : <span id="result"></span></div>
+      </div>
+    </div>
+    <script>
+      const $input = document.querySelector("input");
+      const $one = document.querySelector("#one");
+      const $two = document.querySelector("#two");
+      const $three = document.querySelector("#three");
+      const $four = document.querySelector("#four");
+      const $five = document.querySelector("#five");
+      const $six = document.querySelector("#six");
+      const $seven = document.querySelector("#seven");
+      const $eight = document.querySelector("#eight");
+      const $nine = document.querySelector("#nine");
+      const $zero = document.querySelector("#zero");
+
+      const $plus = document.querySelector("#plus");
+      const $minus = document.querySelector("#minus");
+      const $multiply = document.querySelector("#multiply");
+      const $divide = document.querySelector("#divide");
+      const $clear = document.querySelector("#clear");
+
+      const $equal = document.querySelector("#equal");
+      const $result = document.querySelector("#result");
+      const $pressEnter = document.querySelector("#pressEnter");
+
+      function OnClickButton() {
+        $input.value = $input.value + event.target.textContent;
+      }
+
+      $one.addEventListener("click", OnClickButton);
+      $two.addEventListener("click", OnClickButton);
+      $three.addEventListener("click", OnClickButton);
+      $four.addEventListener("click", OnClickButton);
+      $five.addEventListener("click", OnClickButton);
+      $six.addEventListener("click", OnClickButton);
+      $seven.addEventListener("click", OnClickButton);
+      $eight.addEventListener("click", OnClickButton);
+      $nine.addEventListener("click", OnClickButton);
+      $zero.addEventListener("click", OnClickButton);
+
+      $plus.addEventListener("click", OnClickButton);
+      $minus.addEventListener("click", OnClickButton);
+      $multiply.addEventListener("click", function () {
+        $input.value = $input.value + "*";
+      });
+      $divide.addEventListener("click", function () {
+        $input.value = $input.value + "/";
+      });
+
+      $clear.addEventListener("click", function () {
+        const inputArr = $input.value.split("");
+        inputArr.pop();
+        $input.value = inputArr.join("");
+      });
+
+      function onClickEqual() {
+        $result.textContent = eval($input.value);
+        $input.value = "";
+        $input.focus();
+      }
+
+      function onEnterInput() {
+        event.preventDefault();
+        onClickEqual();
+      }
+
+      $pressEnter.addEventListener("submit", onEnterInput);
+      $equal.addEventListener("click", onClickEqual);
+    </script>
+  </body>
+</html>
