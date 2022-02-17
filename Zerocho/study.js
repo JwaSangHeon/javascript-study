@@ -134,7 +134,7 @@ confirm(`맞나요?`); // confirm() : 확인, 취소 두 개중에 한 개를 �
 // 태그.addEventListener('이벤트이름',리스너함수(콜백함수));
 
 
-// 고차 함수(high order function) : 함수가 함수를 리턴한다.(화살표 2개)
+// 8. 고차 함수(high order function) : 함수가 함수를 리턴한다.(화살표 2개)
 // const onClickNumber = (number) =>{
 //     return () => { 
 //         if(operator){
@@ -150,10 +150,44 @@ confirm(`맞나요?`); // confirm() : 확인, 취소 두 개중에 한 개를 �
 //           || 
 
 const onClickNumber = (number) => () =>{
-    if(operator){
-        
-    }else{
+  if(operator){
+      
+  }else{
 
-    }
+  }
 };
+
+// 9. if문 중첩 제거 방법
+// (1) 공통된 절차를 각 분기점 내부에 넣는다.
+// (2) 분기점에서 짧은 절차부터 실행하게 if문을 작성한다.
+// (3) 짧은 절차가 끝나면 return(함수의 내부의 경우)이나 break(for문 내부의 경우)로 중단한다.
+// (4) else를 제거한다.(이때 중첩문 하나가 제거된다.)
+// (5) 1~4과정 반복
+function test(){
+  let result = '';
+	if(a){
+      if(!b){
+        result = 'c';
+      }
+  }else{
+      result = 'a';
+  }
+	result +='b';
+	return result;
+}
+
+function removeIfTest() {
+	let result = '';
+	if(!a){
+		result = 'a';
+		result +='b';
+		return result;
+	}
+	if(!b){
+		result = 'c';
+	}
+	result +='b';
+	return result;
+	
+}
 

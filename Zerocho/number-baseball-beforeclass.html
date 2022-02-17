@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Number-Baseball-Game-BeforeClass</title>
+  </head>
+  <body>
+    <div id="title">Number-Baseball-Game</div>
+    <form id="submit" action="">
+      <input type="text" / maxlength="4">
+      <button>제시</button>
+    </form>
+    <ol id="records"></ol>
+    <script>
+      const $submit = document.querySelector("#submit");
+      const $input = document.querySelector("input");
+      const $records = document.querySelector("#records");
+
+      const onSubmit = function () {
+        const newNumber = document.createElement("span");
+        const numberList = document.createElement("li");
+
+        const numberStatus = () => {
+          const status = document.createElement("span");
+          let strike = 0;
+          let ball = 0;
+
+          const countStrikeAndBall = (i) => {
+            if ($input.value[i] === randomNumbers[i]) {
+              strike += 1;
+            } else if ($input.value.includes(randomNumbers[i])) {
+              ball += 1;
+            }
+          };
+
+          countStrikeAndBall(0);
+          countStrikeAndBall(1);
+          countStrikeAndBall(2);
+          countStrikeAndBall(3);
+
+          status.textContent = `S:${strike} B:${ball}`;
+          numberList.appendChild(status);
+          $input.value = "";
+          $input.focus();
+        };
+
+        event.preventDefault(); //새로고침 방지
+        if ($input.value === randomNumbers) {
+          alert("SUCCESS!");
+          // console.log("success!");
+          // newNumber.textContent = $input.value + "    ";
+          // numberList.appendChild(newNumber);
+          // $records.appendChild(numberList);
+          // numberStatus();
+        } else {
+          newNumber.textContent = $input.value + "     ";
+          numberList.appendChild(newNumber);
+          $records.appendChild(numberList);
+          numberStatus();
+        }
+      };
+      let randomNumbers = ""; // 임의의 4자리 수 저장할 변수
+
+      randomNumbers += Math.floor(Math.random() * 10);
+
+      while (true) {
+        let imsi = Math.floor(Math.random() * 10);
+        if (randomNumbers.includes(imsi)) {
+          //새로생성
+          imsi = Math.floor(Math.random() * 10);
+        } else {
+          //문자열에 추가
+          randomNumbers += imsi;
+        }
+        if (randomNumbers.length === 4) {
+          break;
+        }
+      }
+
+      // for (let i = 0; i < 4; i++) {
+      //   randomNumbers += Math.floor(Math.random() * 10); //임의의 4자리 수 생성
+      //   console.log(randomNumbers);
+      // }
+
+      $submit.addEventListener("submit", onSubmit);
+    </script>
+  </body>
+</html>
