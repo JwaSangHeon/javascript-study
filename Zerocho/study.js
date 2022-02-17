@@ -188,6 +188,14 @@ function removeIfTest() {
 	}
 	result +='b';
 	return result;
-	
 }
 
+// 10. Math 객체
+Math.random(); // 0~1사이의 값
+Math.floor(Math.random()); // 소숫점 1의 자리에서 내림
+Math.round(Math.random()); // 소숫점 1의 자리에서 반올림
+Math.ceil(Math.random()); // 소숫점 1의 자리에서 올림
+
+// 코드를 바꿀 때, 한 개만 바꿔도 전체가 바뀔 수 있게 코드를 짜는 것이 중요하다.(Ex.9대신 numbers.length)
+// 문자열.split() : 문자열을 배열로 변경(인수는 ''를 쓰면 문자 한 개씩 분리된다.)
+// 배열.join() : 배열을 문자열로 변경(인수는 ''를 쓰면 전체가 공백없이 합쳐진다.)

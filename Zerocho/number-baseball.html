@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Number-Baseball</title>
+  </head>
+  <body>
+    <form id="form">
+      <input required type="text" id="input" maxlength="4" />
+      <button>확인</button>
+    </form>
+    <div id="logs"></div>
+    <script>
+      const $input = document.querySelector("#input");
+      const $form = document.querySelector("#form");
+      const $logs = document.querySelector("#logs");
+
+      const numbers = [];
+      for (let i = 0; i < 9; i++) {
+        numbers.push(i + 1);
+      }
+
+      const answer = [];
+      let n = 0;
+      while (n < 4) {
+        // 4번 반복
+        const index = Math.floor(Math.random() * numbers.length); //0~8까지(진행됨에 따라 범위가 줄어든다.)
+        answer.push(numbers[index]);
+        numbers.splice(index, 1);
+        n++;
+      }
+      console.log(answer);
+
+      const tries = [];
+      function checkInput(input) {
+        if (input.length !== 4) {
+          //길이가 4가 아닐 때
+          return alert("4자리 숫자를 입력하세요");
+        }
+        if (new Set(input).size !== 4) {
+          //중복된 숫자가 있는가?(new Set은 중복된 것을 제거해준다.)
+          return alert("서로 다른 숫자를 입력하세요");
+        }
+        if (tries.includes(input)) {
+          //이미 시도한 값이면
+          return alert("이미 시도한 값입니다.");
+        }
+        return true;
+      } // 검사하는 코드
+      $form.addEventListener("submit", (event) => {
+        event.preventDefault(); //기본 동작 막기
+        const value = $input.value;
+        $input.value = "";
+
+        if (!checkInput(value)) {
+          //중첩 if제거
+          return;
+        }
+
+        //입력값이 문제 없을 때
+        if (answer.join("") === value) {
+          //join메서드는 배열을 문자열로 변경해준다. 인수는 사이에 끼는 값이다.(ex.[3,1,4,6]->'3146')
+          $logs.textContent = "홈런!";
+          return;
+        }
+        if (tries.length >= 9) {
+          const message = document.createTextNode(
+            //createTextNode는 추가할 글자를 써 넣으면 된다. 이후 appendChild를 통해 화면에 추가할 수 있다.
+            `패배 정답은${answer.join("")}`
+          );
+          $logs.appendChild(message);
+          return;
+        }
+        // 몇 스트라이크, 몇 볼인지 검사
+        let strike = 0;
+        let ball = 0;
+        for (let i = 0; i < answer.length; i++) {
+          const index = value.indexOf(answer[i]);
+          if (index > -1) {
+            //일치하는 숫자 발견
+            if (index === i) {
+              strike += 1;
+            } else {
+              // 숫자만 같음
+              ball += 1;
+            }
+          }
+        }
+        if (strike === 0 && ball === 0) {
+          $logs.append(`${value} : 아웃`, document.createElement("br"));
+        } else {
+          $logs.append(
+            `${value} : ${strike} 스트라이크 ${ball} 볼`,
+            document.createElement("br")
+          );
+        }
+
+        tries.push(value);
+      });
+    </script>
+  </body>
+</html>
