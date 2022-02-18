@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LottoNumber</title>
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="title">오늘의 추첨 번호는?</div>
+    <button>추첨</button>
+    <div id="numberTitle">추첨번호 : <span id="number"></span></div>
+    <div id="bonusTitle">보너스 번호 : <span id="bonus"></span></div>
+    <script>
+      const $button = document.querySelector("button");
+      const $number = document.querySelector("#number");
+      const $bonus = document.querySelector("#bonus");
+
+      const numberList = Array(45)
+        .fill()
+        .map((element, i) => {
+          return i + 1;
+        }); // 1~45배열 생성
+
+      const chosenNumber = [];
+
+      function choseNumber() {
+        const index = Math.floor(Math.random() * numberList.length);
+        chosenNumber.push(numberList[index]);
+        numberList.splice(index, 1);
+      }
+
+      const drawNumber = () => {
+        $number.textContent += chosenNumber[0] + "  ";
+        chosenNumber.shift();
+      };
+
+      function onClickBtn() {
+        $button.classList.add("hidden"); // 추첨 버튼을 누르면 사라짐
+        for (let i = 0; i < 6; i++) {
+          choseNumber(); // 숫자를 고른다
+          setTimeout(drawNumber, 2000 * (i + 1)); // 숫자를 순차적으로 표시 한다.
+        }
+        choseNumber(); // 보너스 숫자를 고른다.
+        setTimeout(() => {
+          $bonus.textContent += chosenNumber[0] + "  ";
+        }, 14000);
+      }
+      //----------------------------------------------------------------------------------
+
+      $button.addEventListener("click", onClickBtn);
+    </script>
+  </body>
+</html>

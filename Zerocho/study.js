@@ -199,3 +199,19 @@ Math.ceil(Math.random()); // 소숫점 1의 자리에서 올림
 // 코드를 바꿀 때, 한 개만 바꿔도 전체가 바뀔 수 있게 코드를 짜는 것이 중요하다.(Ex.9대신 numbers.length)
 // 문자열.split() : 문자열을 배열로 변경(인수는 ''를 쓰면 문자 한 개씩 분리된다.)
 // 배열.join() : 배열을 문자열로 변경(인수는 ''를 쓰면 전체가 공백없이 합쳐진다.)
+
+
+// 11.forEach문 : 배열의 요소를 통해 반복한다.(map도 존재한다.)
+const answer = [3,1,4,5];
+answer.forEach((element, index)=>{
+    //element : 요소 값
+    //index : 요소 인덳스 값
+});
+
+//1~9가 들어있는 배열
+Array(9).fill().map((element,index)=>{
+    // Array() : 인자로 받는 값의 길이의 배열 생성
+    // fill() : 인자로 받는 값을 채워넣는다.
+    // map : 반복문(배열)(새로운 배열을 만들어 낼 때,)
+    return index+1;
+})
