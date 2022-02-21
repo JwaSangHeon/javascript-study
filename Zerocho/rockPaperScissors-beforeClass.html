@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RockPaperScissorsGame</title>
+    <style>
+      div {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .hidden {
+        display: none;
+      }
+      #title {
+        font-size: 28px;
+        font-weight: bold;
+      }
+      #choice {
+      }
+      #buttons {
+      }
+      #computerChoice {
+      }
+    </style>
+  </head>
+  <body>
+    <div id="title">가위바위보 게임</div>
+    <div id="choice">아래 중 한 개를 고르세요.</div>
+    <div id="buttons">
+      <button id="scissor">가위</button>
+      <button id="rock">바위</button>
+      <button id="paper">보</button>
+    </div>
+    <div id="afterPressBtn" class="hidden">
+      <div id="computerChoice">컴퓨터 :</div>
+      <div id="myChoice">나 :</div>
+      <div id="result"></div>
+    </div>
+    <script>
+      const $buttons = document.querySelector("#buttons");
+      const $scissor = document.querySelector("#scissor");
+      const $rock = document.querySelector("#rock");
+      const $paper = document.querySelector("#paper");
+      const $afterPressBtn = document.querySelector("#afterPressBtn");
+      const $computerChoice = document.querySelector("#computerChoice");
+      const $myChoice = document.querySelector("#myChoice");
+      const $result = document.querySelector("#result");
+
+      const rockPaperScissors = ["가위", "바위", "보"];
+      const index = Math.floor(Math.random() * 3); // 가위바위보 배열에 랜덤한 인덱스를 고른다.
+
+      let chosenBtn = "";
+      const onClickBtn = (buttonText) => () => {
+        chosenBtn = buttonText.innerText; // 누른 버튼의 텍스트를 가져온다.
+        $buttons.classList.add("hidden"); // 버튼을 누르면 버튼들을 숨긴다.
+        $afterPressBtn.classList.remove("hidden"); // 결과화면을 가져온다.
+        winLose(); // 승패 결과
+      };
+
+      const winLose = function () {
+        const choice = document.createElement("span");
+        const computer = document.createElement("span");
+        choice.innerText = chosenBtn;
+        computer.innerText = rockPaperScissors[index];
+        $myChoice.append(choice);
+        $computerChoice.append(computer);
+
+        if (chosenBtn === rockPaperScissors[index]) {
+          $result.innerText = "비겼습니다.";
+        } else if (
+          chosenBtn === "가위" &&
+          rockPaperScissors[index] === "바위"
+        ) {
+          $result.innerText = "졌습니다.";
+        } else if (chosenBtn === "바위" && rockPaperScissors[index] === "보") {
+          $result.innerText = "졌습니다.";
+        } else if (chosenBtn === "보" && rockPaperScissors[index] === "가위") {
+          $result.innerText = "졌습니다.";
+        } else if (chosenBtn === "가위" && rockPaperScissors[index] === "보") {
+          $result.innerText = "이겼습니다.";
+        } else if (
+          chosenBtn === "바위" &&
+          rockPaperScissors[index] === "가위"
+        ) {
+          $result.innerText = "이겼습니다.";
+        } else if (chosenBtn === "보" && rockPaperScissors[index] === "바위") {
+          $result.innerText = "이겼습니다.";
+        }
+      };
+
+      $scissor.addEventListener("click", onClickBtn($scissor));
+      $rock.addEventListener("click", onClickBtn($rock));
+      $paper.addEventListener("click", onClickBtn($paper));
+    </script>
+  </body>
+</html>
