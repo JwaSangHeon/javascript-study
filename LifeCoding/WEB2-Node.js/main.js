@@ -6,7 +6,7 @@ let qs = require('querystring');
 let app = http.createServer(function(request,response){
     // createServer : nodejs로 웹브라우저가 접속이 들어올 때
     // request : 요청할 때 웹 서버가 보낸 정보들
-    // request : 응답할 때 우리가 웹 브라우저에게 보낼 정보들
+    // response : 응답할 때 우리가 웹 브라우저에게 보낼 정보들
     let $url = request.url;
     let queryData = url.parse($url, true).query;
     let pathname = url.parse($url, true).pathname;
