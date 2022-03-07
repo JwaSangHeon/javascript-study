@@ -1,52 +1,70 @@
-* {
-  font-family: "Noto Sans KR", sans-serif;
-  list-style: none;
-  text-decoration: none;
-  border-collapse: collapse;
+/* Reset-css */
+body,
+h1,
+p {
   margin: 0;
-  padding: 0;
-  color: black;
+}
+/* Colors */
+:root {
+  --background-color: midnightblue;
+  --normal-color: dodgerblue;
+  --primary-color: lightgreen;
+  --secondary-color: salmon;
+}
+
+/* Typography-css*/
+:root {
+  font-size: 62.5%; /* 16px의 62.5% = 10px */
+}
+body {
+  font-size: 1.4rem; /* 14px */
+}
+h1 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+.header-title {
+  font-size: 8rem;
+}
+.header-meta {
+  font-size: 2rem;
+}
+
+/* Layouts-css */
+.wrapper {
+  width: 960px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Components-css */
+body {
+  background-color: var(--background-color);
+  color: var(--normal-color);
 }
 
 .header {
-  position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 90%;
-  margin: auto;
-  /* background-color: rgba(0.5, 0.5, 0.5, 0.5); */
+  padding: 2rem 0;
 }
-.logo {
-  position: absolute;
-  top: 15px;
+.header-title {
+  color: var(--secondary-color);
+  font-family: "Sansita Swashed", cursive;
+  line-height: 1;
 }
-img {
-  width: 150px;
-  height: 80px;
+.header-title strong {
+  color: var(--primary-color);
+  display: block;
 }
-.navs {
+.header-meta {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
 }
-.head-nav {
-  position: absolute;
-  top: 15px;
-  right: 93px;
-  display: flex;
-}
-.head-nav > li {
-  margin-left: 10px;
-}
-.nav {
-  display: flex;
-  position: absolute;
-  top: 50px;
-  right: 93px;
-}
-.nav > li {
-  margin-left: 10px;
-}
-.nav > li > a {
+.header-meta::before {
+  content: " ";
+  background-color: currentColor;
+  margin: 0 2em;
+  width: 2em;
+  height: 2px;
 }

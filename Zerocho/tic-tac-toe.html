@@ -36,6 +36,7 @@
             //칸에 글자가 있나?
             if (event.target.textContent) return;
             event.target.textContent = turn;
+            //승부 확인
             if (turn === "O") {
               turn = "X";
             } else if (turn === "X") {
