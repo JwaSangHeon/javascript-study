@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vanilla Challenge</title>
+    <meta charset="UTF-8" />
+    <style>
+      .hidden {
+        display: none;
+      }
+      #result {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Random Number Game</h1>
+    <h2>
+      Generate a number between 0 and
+      <input id="maxNumber" type="number" required />
+    </h2>
+    <form id="game">
+      Guess a number:
+      <input id="selectNumber" type="number" required />
+      <button>Play!</button>
+      <div class="hidden" id="score">
+        You chose: <span id="myChoice"></span>, the machine chose:
+        <span id="machineChoice"></span>.
+      </div>
+      <div id="result"></div>
+    </form>
+    <script>
+      const selectNumber = document.querySelector("#selectNumber");
+      const maxNumber = document.querySelector("#maxNumber");
+      const game = document.querySelector("#game");
+      const myChoice = document.querySelector("#myChoice");
+      const machineChoice = document.querySelector("#machineChoice");
+      const score = document.querySelector("#score");
+      const result = document.querySelector("#result");
+
+      const onSubmit = (event) => {
+        event.preventDefault();
+        const max = parseInt(maxNumber.value);
+        const randomNumber = Math.floor(Math.random() * (max + 1));
+        score.classList.remove("hidden");
+        myChoice.innerText = selectNumber.value;
+        machineChoice.innerText = randomNumber;
+        // console.log(myChoice.innerText, machineChoice.innerText);
+
+        if (myChoice.innerText === machineChoice.innerText) {
+          result.innerText = "You won!";
+        } else {
+          result.innerText = "You lost!";
+        }
+      };
+
+      game.addEventListener("submit", onSubmit);
+    </script>
+  </body>
+</html>
