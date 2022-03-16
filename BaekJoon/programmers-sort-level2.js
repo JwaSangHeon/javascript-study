@@ -1,5 +1,4 @@
-const numbers = [3, 30, 34, 5, 9]; // return "6210"
-
+const numbers = [6, 10, 2]; // return "6210"
 // 문제 설명
 // 0 또는 양의 정수가 주어졌을 때, 정수를 이어 붙여 만들 수 있는 가장 큰 수를 알아내 주세요.
 
@@ -24,6 +23,11 @@ function solution(numbers) {
   while(true){
     const numbersCopy = numbers.slice();
     const newArray = [];
+    // for(; i<numbersCopy.length; i++){
+    //   const randomIndex = Math.floor(Math.random()*numbersCopy.length);
+    //   newArray.push(numbersCopy[randomIndex]);
+    //   numbersCopy.splice(randomIndex,1);
+    // }
     while(true){
       const randomIndex = Math.floor(Math.random()*numbersCopy.length);
       newArray.push(numbersCopy[randomIndex]);
