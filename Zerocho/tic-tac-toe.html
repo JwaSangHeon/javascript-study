@@ -21,6 +21,8 @@
 
   <body>
     <script>
+      // const {body} = document;
+      // const body = document.body; // 위의 코드와 같다(구조 분해 할당)
       let turn = "O";
       const data = [];
       for (let i = 0; i < 3; i++) {
@@ -37,11 +39,13 @@
             if (event.target.textContent) return;
             event.target.textContent = turn;
             //승부 확인
-            if (turn === "O") {
-              turn = "X";
-            } else if (turn === "X") {
-              turn = "O";
-            }
+
+            turn = turn === "O" ? "X" : "O";
+            // if (turn === "O") {
+            //   turn = "X";
+            // } else if (turn === "X") {
+            //   turn = "O";
+            // }
           });
           $tr.append($td);
         }
