@@ -39,7 +39,6 @@ function solution(priorities, location) {
 
 
 
-
   // var answer = 0;
   // const docuOrder = [];
   // const array = [];
@@ -66,7 +65,7 @@ function solution(priorities, location) {
   // }
   
   // console.log(docuOrder);
-  return answer;
+  // return answer;
 }
 
 solution(priorities, location);

@@ -54,28 +54,9 @@ function solution(bridge_length, weight, truck_weights) {
       bridge.unshift(0);//[0,7]
       truck_weights.unshift(ready);//[4,5,6] 
     }
-    // if(sum <= weight){// 다리위의 총합이 무게보다 작거나 같은 떄
-    //   bridge.unshift(truck_weights.shift());
-    // } else {
-    //   bridge.unshift(0);
-    // }
-    // sum = bridge.reduce((acc, cur) => acc + cur, 0);//[0, 0], 0+0 = 0 다리위의 총합 7
     answer++;
-    
   }
   console.log(answer);
-  // console.log(bridge, sum);
-  // let answer = 0;
-  // for(let i = 0; i < truck_weights.length; i++){
-  //   bridge.push(truck_weights[i]);
-  //   // console.log(bridge.reduce((acc, cur) => acc + cur, 0));
-  //   if(bridge.reduce((acc, cur) => acc + cur, 0) > weight){
-  //     bridge.pop();
-  //     answer +
-  //   }
-  //}
-
-
 
   // !-------------------------------------------------------
   // var answer = 0;
