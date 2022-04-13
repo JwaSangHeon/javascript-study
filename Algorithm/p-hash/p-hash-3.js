@@ -15,38 +15,88 @@
 // 모든 장르는 재생된 횟수가 다릅니다.
 
 const genres = ["classic", "pop", "classic", "classic", "pop"];
-const plays = [500, 600, 150, 800, 2500];	
-// return [4, 1, 3, 0]
+const plays = [500, 600, 150, 800, 2500];
+//return [4, 1, 3, 0]
+
+// function solution(genres, plays) {
+//   var answer = [];
+
+//   const songListArray = [];
+//   for(let i = 0; i < genres.length; i++){
+//     songListArray.push([genres[i], plays[i], i]);
+//   }
+//   console.log(songListArray);
+
+//   const songs = {};
+//   songs[genres[]]
+
+// const songList = [];
+
+// for(let i = 0; i < genres.length; i++){
+//   songList.push([genres[i], plays[i], i]);
+// }
+
+// songList.sort((a, b) => a[0].localeCompare(b[0])); //정렬
+
+// const totalPlays = [[songList[0][0],songList[0][1]]];
+// for(let i = 0; i < songList.length; i++){
+//   const totalPlay = [];
+//   if(songList[i][0])
+//   totalPlay.push(songList[i][0],songList[i][1]);
+//   totalPlays.push(totalPlay);
+// }
+// console.log(totalPlays);
+// console.log(songList);
+
+// for(let i = 0; i< songList.length; i++){
+//   if(songList[i] === songList[0]){
+
+//   }
+// }
+
+// const total = songList.reduce((acc,cur) => acc+cur[1],0);
+// console.log(total);
+
+// songList.sort((a,b) => b[1]-a[1]);
+// console.log(songList);
+// for(let i = 0; i < genres.length; i++){
+//   const song = {};
+//   song['genre'] = genres[i];
+//   song['play'] = plays[i];
+//   song['index'] = i;
+//   songList.push(song);
+// }
+
+// const firstGenre = songList[0].genre;
+// for(let i = 0; i < songList.length; i++){
+
+// }
+// const a = songList.filter((item) => item.genre === 'classic');
+// console.log(a);
+//   return answer;
+// }
+
 function solution(genres, plays) {
   var answer = [];
   const songs = {};
-  const index = {};
-  for(let i = 0; i < genres.length; i++){
-    songs[genres[i]] = []; 
-    index[i+genres[i]] = [];
-    //{
-    //   '0classic': [],
-    //   '1pop': [],
-    //   '2classic': [],
-    //   '3classic': [],
-    //   '4pop': []
-    // }
+  for (let i = 0; i < genres.length; i++) {
+    songs[genres[i]] = [];
   }
-  for(let i = 0; i < genres.length; i++){
-    songs[genres[i]].push(plays[i]);
+  for (let i = 0; i < genres.length; i++) {
+    songs[genres[i]].push([plays[i], i]);
   }
-  for(let i = 0; i < genres.length; i++){
-    index[i+genres[i]].push(plays[i]);
-  }
-  for(let prop in songs){
-    const total = songs[prop].reduce((acc,cur) => acc+cur, 0);
-    songs[prop] = total;
-  }
-  
-  
-  console.log(index);
-  console.log(songs);
+
+  const totalPlaySongs = [];
+  for (let prop in songs) {
+    const total = songs[prop].reduce((acc, cur) => acc + cur[0], 0);
+    const totalPlaySong = [prop, total];
+    totalPlaySongs.push(totalPlaySong);
+  } //[ [ 'classic', 1450 ], [ 'pop', 3100 ] ]
+
+  totalPlaySongs.sort((a, b) => b[1] - a[1]); //[ [ 'pop', 3100 ], [ 'classic', 1450 ] ]
+  console.log(totalPlaySongs);
+  // console.log(songs);
   return answer;
 }
 
-solution(genres,plays);
+solution(genres, plays);
