@@ -64,9 +64,10 @@ getHen()
   // .then(getEgg) // 받아오는 value를  다른함수로 전달하는 경우 생략가능하다.
   .catch((error) => {
     return "🍕";
-  })
+  }) // 바로바로 에러 처리를 해서 사용한다.
   .then((egg) => cook(egg))
   // .then(cook)
   .then((meal) => console.log(meal))
   // .then(console.log)
   .catch(console.log);
+
