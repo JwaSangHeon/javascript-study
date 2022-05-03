@@ -8,36 +8,52 @@
 // numbers는 0~9까지 숫자만으로 이루어져 있습니다.
 // "013"은 0, 1, 3 숫자가 적힌 종이 조각이 흩어져있다는 의미입니다.
 
-const numbers = [1, 2, 3, 4]; //return 	3
+const numbers = "2"; //return 	3
 
-const combi = (array, selectNum) => {
-  //[1,2,3,4],2
-  const result = [];
-  if (selectNum === 1) return array.map((ele) => [ele]);
+function solution(numbers) {
+  var answer = 0;
+  const numbersToArray = [...numbers].map((number) => Number(number));
+  const total = [];
 
-  array.forEach((fixed, index, originArray) => {
-    const rest = originArray.slice(index + 1); //[2,3,4]
-    const middle = combi(rest, selectNum - 1); // [2,3,4],1 -> [[2],[3],[4]]
-    const num = middle.map((ele) => [fixed, ...ele]); //[[1,2],[1,3],[1,4]]
-    result.push(...num);
+  const 순열 = (배열, 뽑을갯수) => {
+    const result = [];
+    if (뽑을갯수 === 1) return 배열.map((숫자) => [숫자]);
+
+    배열.forEach((fix, index, origin) => {
+      const restArr = [...origin.slice(0, index), ...origin.slice(index + 1)];
+      const 또순열 = 순열(restArr, 뽑을갯수 - 1); // [[2],[3],[4]]
+      const 고정된거랑합친거 = 또순열.map((숫자) => [fix, ...숫자]);
+      result.push(...고정된거랑합친거);
+    });
+    return result;
+  };
+
+  numbersToArray.forEach((value, index, arr) => {
+    total.push(...순열(arr, index + 1));
   });
-  return result;
-};
 
-const a = combi(numbers, 3);
+  let numberList = total.map((num) => Number(num.join("")));
+  const set = new Set(numberList);
+  numberList = [...set];
+  console.log(numberList);
 
-console.log(a);
+  numberList.forEach((number, index) => {
+    if (number !== 0 && number !== 1) {
+      if (number === 2) {
+        //2일때 예외처리
+        answer += 1;
+      }
+      for (let i = 2; i < number; i++) {
+        if (number % i === 0) break;
+        if (i === number - 1) {
+          console.log(number);
+          answer += 1;
+        }
+      }
+    }
+  });
+  console.log(answer);
+  return answer;
+}
 
-// function solution(numbers) {
-//   var answer = 0;
-//   let totalNumber = [];
-//   for(let i = 0; i < numbers.length; i++){
-//       totalNumber.push(Number(numbers[i]));
-//   }
-//   totalNumber.push(numbers[0]+numbers[1]);
-//   totalNumber.push(numbers[1]+numbers[0]);
-//   console.log(totalNumber);
-//   return answer;
-// }
-
-// solution(answers);
+solution(numbers);
