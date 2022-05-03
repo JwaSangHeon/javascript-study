@@ -70,4 +70,3 @@ getHen()
   .then((meal) => console.log(meal))
   // .then(console.log)
   .catch(console.log);
-
