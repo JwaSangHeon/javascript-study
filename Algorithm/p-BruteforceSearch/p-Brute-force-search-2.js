@@ -8,34 +8,34 @@
 // numbers는 0~9까지 숫자만으로 이루어져 있습니다.
 // "013"은 0, 1, 3 숫자가 적힌 종이 조각이 흩어져있다는 의미입니다.
 
-const numbers = "2"; //return 	3
+const numbers = "17"; //return 	3
 
 function solution(numbers) {
   var answer = 0;
-  const numbersToArray = [...numbers].map((number) => Number(number));
+  const numbersToArray = [...numbers].map((ele) => Number(ele));
+  console.log(numbersToArray);
   const total = [];
 
-  const 순열 = (배열, 뽑을갯수) => {
+  const permutation = (array, selectNumber) => {
     const result = [];
-    if (뽑을갯수 === 1) return 배열.map((숫자) => [숫자]);
+    if (selectNumber === 1) return array.map((ele) => [ele]);
 
-    배열.forEach((fix, index, origin) => {
+    array.forEach((fix, index, origin) => {
       const restArr = [...origin.slice(0, index), ...origin.slice(index + 1)];
-      const 또순열 = 순열(restArr, 뽑을갯수 - 1); // [[2],[3],[4]]
-      const 고정된거랑합친거 = 또순열.map((숫자) => [fix, ...숫자]);
-      result.push(...고정된거랑합친거);
+      const anotherpermutation = permutation(restArr, selectNumber - 1); // [[2],[3],[4]]
+      const combined = anotherpermutation.map((ele) => [fix, ...ele]);
+      result.push(...combined);
     });
     return result;
   };
 
   numbersToArray.forEach((value, index, arr) => {
-    total.push(...순열(arr, index + 1));
+    total.push(...permutation(arr, index + 1));
   });
 
   let numberList = total.map((num) => Number(num.join("")));
   const set = new Set(numberList);
   numberList = [...set];
-  console.log(numberList);
 
   numberList.forEach((number, index) => {
     if (number !== 0 && number !== 1) {
@@ -46,7 +46,6 @@ function solution(numbers) {
       for (let i = 2; i < number; i++) {
         if (number % i === 0) break;
         if (i === number - 1) {
-          console.log(number);
           answer += 1;
         }
       }

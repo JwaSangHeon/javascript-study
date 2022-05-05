@@ -59,31 +59,32 @@ let k = 2;
 
 function solution(id_list, report, k) {
   var answer = [];
-  const 신고횟수 = report.length;
 
-  const 각자신고당한횟수 = [];
+  const reportedNumber = []; //신고당한[사람, 횟수]를 넣을 배열
   id_list.forEach((person) => {
-    각자신고당한횟수.push([person, 0]);
+    reportedNumber.push([person, 0]);
     answer.push([person, 0]);
   });
 
   const set = new Set(report);
-  report = [...set];
+  report = [...set]; //중복제거
 
-  let result = report.map((person) => person.split(" "));
-  result.forEach((person) => {
-    각자신고당한횟수.forEach((count) => {
+  report = report.map((person) => person.split(" "));
+
+  report.forEach((person) => {
+    reportedNumber.forEach((count) => {
       if (count[0] === person[1]) {
         count[1] += 1;
       }
     });
   });
-  const 정지된유저 = 각자신고당한횟수
+
+  const suspendUsers = reportedNumber
     .filter((person) => person[1] >= k)
     .map((user) => user[0]);
 
-  result.forEach((person) => {
-    if (정지된유저.includes(person[1])) {
+  report.forEach((person) => {
+    if (suspendUsers.includes(person[1])) {
       answer.forEach((user) => {
         if (person[0] === user[0]) {
           user[1] += 1;

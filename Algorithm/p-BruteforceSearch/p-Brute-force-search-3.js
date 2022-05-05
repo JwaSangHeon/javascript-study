@@ -23,13 +23,13 @@ function solution(brown, yellow) {
     }
   }
   const yellow약수절반 = yellow약수.slice(0, Math.round(yellow약수.length / 2));
-  console.log(yellow약수절반);
 
   const result = yellow약수절반.filter(
     (약수) => (brown + yellow) / (약수 + 2) === yellow / 약수 + 2
   );
+  // console.log(result);
   answer = [yellow / result[0] + 2, result[0] + 2];
-  console.log(answer);
+  // console.log(answer);
 
   return answer;
 }
