@@ -8,14 +8,12 @@ const template = require("./lib/template.js");
 const app = http.createServer(async function (request, response) {
   const _url = request.url;
   const queryData = url.parse(_url, true).query;
-  s;
   const pathname = url.parse(_url, true).pathname;
 
   let title = queryData.id;
 
   if (pathname === "/") {
     if (!title) {
-      s;
       fs.readdir("./data", (err, filelist) => {
         title = "Welcome";
         const description = "Hello, WEB";
