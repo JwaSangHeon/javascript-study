@@ -1,101 +1,136 @@
-let http = require('http');
-let fs = require('fs');
-let url = require('url');
-let qs = require('querystring');
+const http = require("http");
+const fs = require("fs");
+const url = require("url");
+const qs = require("querystring");
+const path = require("path");
+const template = require("./lib/template.js");
 
-let app = http.createServer(function(request,response){
-    // createServer : nodejs로 웹브라우저가 접속이 들어올 때
-    // request : 요청할 때 웹 서버가 보낸 정보들
-    // response : 응답할 때 우리가 웹 브라우저에게 보낼 정보들
-    let $url = request.url;
-    let queryData = url.parse($url, true).query;
-    let pathname = url.parse($url, true).pathname;
-    let title = queryData.id;
-    let list = `<ol>`;
-    
+const app = http.createServer(async function (request, response) {
+  const _url = request.url;
+  const queryData = url.parse(_url, true).query;
+  s;
+  const pathname = url.parse(_url, true).pathname;
 
-    function templateHtml(title, list, body){
-      return`
-      <!doctype html>
-      <html>
-        <head>
-          <title>WEB1 - ${title}</title>
-          <meta charset="utf-8">
-        </head>
-        <body>
-          <h1><a href="/">WEB</a></h1>
-          ${list}
-          <a href='/create'>create</a>
-          ${body}
-        </body>
-      </html>
-      `;
-    }
-    function templateList(filelist){
-      let i = 0;
-      while(i < filelist.length){
-        list = list + `<li><a href="/?id=${filelist[i]}">${filelist[i]}</a></li>`;
-        i++;
-      }
-      list = list + `</ol>`;
-    }
+  let title = queryData.id;
 
-    console.log(pathname);
-    if(pathname === '/'){
-      if(!title){
-        fs.readdir('./data', (err, filelist)=>{
-          title = 'Welcome';
-          description = 'Hello, Node.js';
-          templateList(filelist);
-          let template = templateHtml(title, list, `<h2>${title}</h2><p>${description}</p>`);
-          response.writeHead(200);//파일을 성공적으로 전송했다.
-          response.end(template);
-        })
-      } else{
-        fs.readFile(`data/${title}`, 'utf-8' ,(err,description)=>{
-          fs.readdir('./data', (err, filelist) => {
-            templateList(filelist);
-            let template = templateHtml(title, list, `<h2>${title}</h2><p>${description}</p>`);
-            response.writeHead(200);//파일을 성공적으로 전송했다.
-            response.end(template);
-          });
-        });
-      } 
-    } else if(pathname === '/create'){
-      fs.readdir('./data', (err, filelist)=>{
-        title = 'WEB-create';
-        templateList(filelist);
-        let template = templateHtml(title, list, `
-          <form action='http://localhost:3000/create_process' method='post'>
-            <p><input type='text' name='title' placeholder='title'></p>
-            <p>
-              <textarea name='description' placeholder='description'></textarea>
-            </p>
-            <p>
-              <input type="submit">
-            </p>
-          </form>
-        `);
-        response.writeHead(200);//파일을 성공적으로 전송했다.
-        response.end(template);
-      })
-    } else if (pathname === '/create_process') {
-      let body = '';
-      request.on('data', function(data){
-        //웹 브라우저가 포스트 방식으로 데이터를 전송할 때 전송할 데이터가 너무 많으면 그 데이터를 한번에 처리하다가는 프로그램이 꺼진다거나 컴퓨터가 꺼진다. 그래서 request.on을 사용하여 조각으로 나눠서 조각을 수신할 때마다 콜백 함수를 호출한다.
-        body = body + data;//콜백이 실행될 때마다 데이터를 body함수에 추가해준다.
+  if (pathname === "/") {
+    if (!title) {
+      s;
+      fs.readdir("./data", (err, filelist) => {
+        title = "Welcome";
+        const description = "Hello, WEB";
+        const list = template.list(filelist);
+        const body = `<h2>${title}</h2>
+        <p>
+        ${description}
+        </p>`;
+        const control = `<a href="/create">create</a>`;
+        const html = template.html(title, list, body, control);
+        response.writeHead(200);
+        response.end(html);
       });
-      request.on('end', function(){
-        //정보 수신이 끝났을 때,
-        let post = qs.parse(body);
-        let title = post.title;
-        let description = post.description;
-      });
-      response.writeHead(200);
-      response.end('Success!');
     } else {
-      response.writeHead(404);//파일을 찾을 수 없다. 
-      response.end('Not Found');
+      const filteredId = path.parse(title).base;
+      fs.readFile(`data/${filteredId}`, "utf-8", (err, description) => {
+        fs.readdir("./data", (err, filelist) => {
+          const list = template.list(filelist);
+          const body = `<h2>${title}</h2>
+            <p>
+            ${description}
+            </p>`;
+          const control = `<a href="/create">create</a> <a href="/update?id=${title}">update</a> <form action="/process_delete" method="post"><input type="hidden" name="id" value="${title}"/><input type="submit" value="delete"/></form>`;
+          const html = template.html(title, list, body, control);
+          response.writeHead(200);
+          response.end(html);
+        });
+      });
     }
+  } else if (pathname === "/create") {
+    fs.readdir("./data", (err, filelist) => {
+      title = "create";
+      const list = template.list(filelist);
+      const body = `
+        <form action="/process_create" method="post">
+        <p><input type="text" name="title" placeholder="title"/></p>  
+        <p><textarea name="description" placeholder="description"></textarea></p>
+        <p><button type="submit">create</button></p>
+        </form>
+      `;
+      const control = ``;
+      const html = template.html(title, list, body, control);
+      response.writeHead(200);
+      response.end(html);
+    });
+  } else if (pathname === "/process_create") {
+    let body = "";
+    request.on("data", (data) => {
+      body += data;
+    });
+
+    request.on("end", () => {
+      let post = qs.parse(body);
+      let title = post.title;
+      let description = post.description;
+      fs.writeFile(`./data/${title}`, description, "utf8", (err) => {
+        response.writeHead(302, { Location: `/?id=${title}` });
+        response.end();
+      });
+    });
+  } else if (pathname === "/update") {
+    const filteredId = path.parse(title).base;
+    fs.readFile(`data/${filteredId}`, "utf-8", (err, description) => {
+      fs.readdir("./data", (err, filelist) => {
+        const list = template.list(filelist);
+        const body = `
+            <form action="/process_update" method="post">
+              <input type="hidden" name="id" value="${title}"/>
+              <p><input type="text" name="title" placeholder="title" value="${title}"/></p>  
+              <p><textarea name="description" placeholder="description" >${description}</textarea></p>
+              <p><button type="submit">update</button></p>
+            </form>
+          `;
+        const control = ``;
+        const html = template.html(title, list, body, control);
+        response.writeHead(200);
+        response.end(html);
+      });
+    });
+  } else if (pathname === "/process_update") {
+    let body = "";
+    request.on("data", (data) => {
+      body += data;
+    });
+    request.on("end", () => {
+      let post = qs.parse(body);
+
+      const id = post.id;
+      const title = post.title;
+      const description = post.description;
+
+      fs.rename(`data/${id}`, `data/${title}`, (err) => {
+        fs.writeFile(`./data/${title}`, description, "utf-8", (err) => {
+          response.writeHead(302, { Location: `/?id=${title}` });
+          response.end();
+        });
+      });
+    });
+  } else if (pathname === "/process_delete") {
+    let body = "";
+    request.on("data", (data) => {
+      body += data;
+    });
+    request.on("end", () => {
+      let post = qs.parse(body);
+      const id = path.parse(post.id).base;
+      fs.unlink(`data/${id}`, (err) => {
+        response.writeHead(302, { Location: `/` });
+        response.end();
+      });
+    });
+  } else {
+    response.writeHead(404);
+    response.end("Not Found");
+  }
 });
+
 app.listen(3000);
