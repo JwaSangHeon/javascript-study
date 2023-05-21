@@ -1,36 +1,30 @@
-const fs = require('fs');
-const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
-const input = fs.readFileSync(filePath).toString().trim().split('\n');
+const fs = require("fs");
+const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
+const input = fs.readFileSync(filePath).toString().trim().split("\n");
 
 function solution(input) {
-  input.shift();
-  // const numbers = input.slice(1,input.length);
-  let array = [];
-  // console.log(numbers);
-  // console.log(input);
-  let newArray = [];
+  let result = 0;
+  const [caseNum, totalLength, givenStrings] = input; // 1, 13, OOIOIOIOIIOII
 
-  input.forEach(item => {
-    array.push(item.split(' '));
-  });
-  // console.log(array);
-  // newArray = array.map(item => {
-  //   console.log(item);
-  //   item.forEach(a => {
-  //     a = parseInt(a);
-  //   });
-  // })
-  // console.log(newArray);
+  // 숫자를 받아서 case를 만든다.
+  const makeCase = (num) => {
+    let caseString = "I";
+    for (let i = 0; i < caseNum; i++) {
+      caseString += "OI";
+    }
+    return caseString;
+  };
+  console.log(makeCase(caseNum));
 
-  // const a = [ '0' , '4' ].map(ele => parseInt(ele));
-  // console.log(a);
+  // 주어진 문자열
+  let strings = givenStrings;
+  while (strings.indexOf(makeCase(caseNum)) > -1) {
+    strings = strings.replace("IOI", "I");
+    result++;
+  }
 
-  array.sort((a,b) => a[1]===b[1] ? a[0]-b[0] : a[1]-b[1]);
-  array.forEach(item => {
-    const str = item.join(' ');
-    console.log(str);
-  })
-  
+  console.log(result);
+  return result;
 }
 
 solution(input);
